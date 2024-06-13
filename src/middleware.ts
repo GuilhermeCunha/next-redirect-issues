@@ -9,6 +9,10 @@ export const middleware = async (req: NextRequest) => {
       url: req.nextUrl.href,
       host: req.nextUrl.hostname,
     },
+    headers: {
+      host: req.headers.get("x-forwarded-host"),
+      fowardHost: req.headers.get("host"),
+    },
   });
 
   if (req.nextUrl.pathname === "/redirect/using-middleware") {
